@@ -1,0 +1,63 @@
+<%= flash[:success] %>
+<div class="container px-5 px-sm-0">
+    <div class="row">
+        <div class="col-md-3">
+            <h2>User info</h2>
+            <%= attachment_image_tag current_user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg"%>
+            <table class="table">
+                 <tbody>
+                    <tr>
+                      <th>name</th>
+                      <th>
+                        <%= @book.user.name %>
+                      </th>
+                    </tr>
+                    <tr>
+                        <th>introduction</th>
+                        <th>
+                          <%= @book.user.introduction %>
+                        </th>
+                    </tr>
+                 </tbody>
+             </table>
+             <div class="row">
+                    <%= link_to edit_user_path(@book.user.id),class: "btn btn-outline-secondary btn-block" do %>
+                    <i class="fas fa-user-cog"></i>
+                    <% end %>
+             </div>
+             <h2>New book</h2>
+             <%= form_with model: @newbook,local:true do |f| %>
+             <div class="field">
+              <label>Title</label><br>
+              <%= f.text_field:title %>
+             </div>
+             <div class="field">
+              <label>Opinion</label><br>
+               <%= f.text_area:body %>
+             </div>
+             <div class="action">
+               <%= f.submit'Create Book',class: "action btn btn-success" %>
+             </div>
+             <% end %>
+        </div>
+        <div class="col-md-8 offset-md-1">
+          <h2>Book detail</h2>
+          <table class="table">
+            <tbody>
+              <tr>
+                <td><%= link_to attachment_image_tag(@book.user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg"),user_path(@book.user_id) %><br>
+                    <%= link_to @book.user.name,user_path(@book.user) %></td>
+                <td><%= link_to @book.title,books_path(@book.id) %></td>
+                <td><%= @book.body %></td>
+                <% if user_signed_in? && current_user.id == @book.user_id %>
+                <td>
+                  <%= link_to "Edit",edit_book_path(@book),class: 'btn btn-success' %>
+                </td>
+                <td>
+                  <%= link_to "Destroy",book_path(@book),method: :delete,class: 'btn btn-danger',"data-confirm"=>"本当に消しますか？" %>
+                </td>
+                <% end %>
+              </tr>
+            </tbody>
+          </table>
+        </div>

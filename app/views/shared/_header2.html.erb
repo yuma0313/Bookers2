@@ -1,0 +1,42 @@
+<header>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+          <a class="text-white mt-2 mb-3">
+            <%= link_to "Bookers",'/', class: 'nav-link text-light' %>
+          </a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item">
+                <%= link_to user_path(current_user.id),class: 'nav-link text-light'  do %>
+                <i class=" fa fa-home"></i>
+                Home
+                <% end %>
+            </li>
+            <li class="nav-item">
+                <%= link_to '/users',class: 'nav-link text-light' do %>
+                <i class="fa fa-users"></i>
+                Users
+                <% end %>
+            </li>
+            <li class="nav-item">
+                <%= link_to books_path,class: 'nav-link text-light' do %>
+                <i class="fas fa-book-open"></i>
+                Books
+                <% end %>
+            </li>
+            <li class="nav-item">
+                <%= link_to destroy_user_session_path, method: :delete, class: 'nav-link text-light' do %>
+                <i class="fa fa-sign-out-alt"></i>
+                logout
+                <% end %>
+            </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
