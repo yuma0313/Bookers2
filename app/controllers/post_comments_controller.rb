@@ -8,6 +8,8 @@ class PostCommentsController < ApplicationController
   end
 
   def destroy
+    PostComment.find_by(id: params[:id], book_id: params[:book_id]).destroy
+    redirect_tobook_path(params[:book_id])
   end
 
   private
