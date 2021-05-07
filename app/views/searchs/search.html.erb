@@ -1,0 +1,38 @@
+<table class='table'>
+  <% if @range == "User" %>
+  <thead>
+    <tr>
+      <th></th>
+      <th>Name</th>
+      <th>Introduction</th>
+      <th colspan="3"></th>
+    </tr>
+    </thead>
+    <% @users.each do |user| %>
+    <tbody>
+      <tr>
+        <td><%= attachment_image_tag(user, :profile_image, :fill, 50, 50, fallback: "no_image.jpg") %></td>
+        <td><%= user.name %></td>
+      </tr>
+    </tbody>
+    <% end %>
+  <% else %>
+    <thead>
+    <tr>
+      <th></th>
+      <th>Title</th>
+      <th>Opinion</th>
+      <th colspan="3"></th>
+    </tr>
+    </thead>
+    <% @books.each do |book| %>
+    <tbody>
+      <tr>
+        <td><%= link_to attachment_image_tag(book.user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg"),user_path(book.user_id) %></td>
+        <td><%= book.title %></td>
+        <td><%= book.body %></td>
+      </tr>
+    </tbody>
+    <% end %>
+  <% end %>
+</table>
