@@ -20,7 +20,7 @@ class BooksController < ApplicationController
     @book = Book.find(params[:id])
     @newbook = Book.new
     @post_comment = PostComment.new
-    @post_comments = @book.post_comments
+    @post_comments = PostComment.all
   end
 
   def edit
