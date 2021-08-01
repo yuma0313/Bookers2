@@ -11,6 +11,7 @@ class User < ApplicationRecord
   has_many :relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
   has_many :followers, through: :reverse_of_relationships, source: :follower
   has_many :followings, through: :relationships, source: :followed
+  
   # ユーザーをフォローする
   def follow(user_id)
     relationships.create(followed_id: user_id)
